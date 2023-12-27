@@ -10,8 +10,7 @@ import Freelances from './pages/Freelances/index.jsx'
 
 import Header from './components/Header/index.jsx'
 import Error from './components/Error/index.jsx'
-import ClientForm from './components/ClientForm/index.jsx'
-import FreelanceForm from './components/FreelanceForm/index.jsx'
+
 
 const GlobalStyle = createGlobalStyle`
     div {
@@ -25,11 +24,7 @@ ReactDOM.render(
         <Header />
         <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/survey/:questionNumber" element={<Survey />} /> */}
-            <Route path="/survey" element={<Survey />} />
-              { /* Nous imbriquons nos composants dans survey */}
-              <Route path="/survey/client" element={<ClientForm />} />
-              <Route path="/survey/freelance" element={<FreelanceForm />} />
+            <Route path="/survey/:questionNumber" element={<Survey />} />
             <Route path="/results" element={<Results />} />
             <Route path="/freelances" element={<Freelances />} />
             <Route path="*" element={<Error />} />

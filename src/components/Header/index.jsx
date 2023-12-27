@@ -26,8 +26,7 @@ function Header() {
             <div>
                 <StyledLink to="/">Accueil</StyledLink>
                 <StyledLink to="/freelances">Profils</StyledLink>
-                {/* <StyledLink to="/survey/1" $isFullLink> */}
-                <StyledLink to="/survey">
+                <StyledLink to="/survey/1" $isFullLink>
                     Faire le test
                  </StyledLink>
             </div>
