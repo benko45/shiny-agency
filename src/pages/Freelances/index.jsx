@@ -44,7 +44,6 @@ function Freelances() {
             const response = await fetch(`http://localhost:8000/freelances`) 
             const { freelancersList } = await response.json()
             setFreeLancesData(freelancersList)
-            console.log(freelancersList)
           }
           catch(err) {
             console.log('===== error =====', err)
