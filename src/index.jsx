@@ -10,7 +10,7 @@ import Survey from './pages/Survey/index.jsx'
 import Results from './pages/Results/index.jsx'
 import Freelances from './pages/Freelances/index.jsx'
 
-import Header from './components/Header/index.jsx'
+import Header from './components/Header/Header.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import Error from './components/Error/Error.jsx'
 
