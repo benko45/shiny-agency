@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import { ThemeProvider } from './utils/context/index.jsx'
 
-import Home from './pages/Home/index.jsx'
+import Home from './pages/Home/Home.jsx'
 import Survey from './pages/Survey/index.jsx'
 import Results from './pages/Results/index.jsx'
 import Freelances from './pages/Freelances/Freelances.jsx'
