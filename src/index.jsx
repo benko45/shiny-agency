@@ -12,7 +12,7 @@ import Freelances from './pages/Freelances/index.jsx'
 
 import Header from './components/Header/index.jsx'
 import Footer from './components/Footer/index.jsx'
-import Error from './components/Error/index.jsx'
+import Error from './components/Error/Error.jsx'
 
 import GlobalStyle from './utils/style/GlobalStyle.jsx'
 
