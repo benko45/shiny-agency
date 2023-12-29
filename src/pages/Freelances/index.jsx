@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Card from '../../components/Card/index.jsx'
+import Card from '../../components/Card/Card.jsx'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors.js'
 import { Loader } from '../../utils/style/Atoms.jsx'
