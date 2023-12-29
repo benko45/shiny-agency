@@ -8,7 +8,7 @@ import { ThemeProvider } from './utils/context/index.jsx'
 import Home from './pages/Home/index.jsx'
 import Survey from './pages/Survey/index.jsx'
 import Results from './pages/Results/index.jsx'
-import Freelances from './pages/Freelances/index.jsx'
+import Freelances from './pages/Freelances/Freelances.jsx'
 
 import Header from './components/Header/Header.jsx'
 import Footer from './components/Footer/Footer.jsx'
