@@ -1,10 +1,11 @@
-import { useState, useEffect, useContext } from 'react'
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import colors from '../../utils/style/colors'
-import { Loader } from '../../utils/style/Atoms'
-import { SurveyContext } from '../../utils/context/ContextProvider.jsx'
+import { useState, useEffect, useContext } from "react"
+import { useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
+import styled from "styled-components"
+import colors from "../../utils/style/colors"
+import { Loader } from "../../utils/style/Atoms"
+import { SurveyContext } from "../../utils/context/ContextProvider.jsx"
+import { useFetch } from "../../utils/hooks"
 
 const SurveyContainer = styled.div`
   display: flex;
@@ -40,8 +41,8 @@ const ReplyBox = styled.button`
   background-color: ${colors.backgroundLight};
   border-radius: 30px;
   cursor: pointer;
-  box-shadow: ${(props) =>
-    props.$isSelected ? `0px 0px 0px 2px ${colors.primary} inset` : 'none'};
+  box-shadow: ${props =>
+    props.$isSelected ? `0px 0px 0px 2px ${colors.primary} inset` : "none"};
   &:first-child {
     margin-right: 15px;
   }
@@ -60,41 +61,46 @@ function Survey() {
   const questionNumberInt = parseInt(questionNumber)
   const prevQuestionNumber = questionNumberInt === 1 ? 1 : questionNumberInt - 1
   const nextQuestionNumber = questionNumberInt + 1
-  const [surveyData, setSurveyData] = useState({})
-  const [isDataLoading, setDataLoading] = useState(false)
-  const { answers, saveAnswers } = useContext(SurveyContext)
-  const [error, setError] = useState(null)
+  // const [surveyData, setSurveyData] = useState({})
+  // const [isDataLoading, setDataLoading] = useState(false)
+  // const { answers, saveAnswers } = useContext(SurveyContext)
+  // const [error, setError] = useState(null)
 
-function saveReply(answer) {
-  saveAnswers({ [questionNumber]: answer })
-}
+  const { saveAnswers, answers } = useContext(SurveyContext)
 
-useEffect(() => {
-    async function fetchSurvey() {
-      setDataLoading(true)
-      try {
-        const response = await fetch(`http://localhost:8000/survey`) 
-        const {surveyData} = await response.json()
-        setSurveyData(surveyData)
-      }
-      catch(err) {
-        console.log('===== error =====', err)
-        setError(true)
-      }
-      finally {
-        setDataLoading(false)
-      }
-    }
-    fetchSurvey()
-}, [])
+  function saveReply(answer) {
+    saveAnswers({ [questionNumber]: answer })
+  }
 
-if (error) {
+  const { data, isLoading, error } = useFetch(`http://localhost:8000/survey`)
+  const { surveyData } = data
+
+  // useEffect(() => {
+  //     async function fetchSurvey() {
+  //       setDataLoading(true)
+  //       try {
+  //         const response = await fetch(`http://localhost:8000/survey`)
+  //         const {surveyData} = await response.json()
+  //         setSurveyData(surveyData)
+  //       }
+  //       catch(err) {
+  //         console.log('===== error =====', err)
+  //         setError(true)
+  //       }
+  //       finally {
+  //         setDataLoading(false)
+  //       }
+  //     }
+  //     fetchSurvey()
+  // }, [])
+
+  if (error) {
     return <span>Oups il y a eu un problème</span>
-}
+  }
   return (
     <SurveyContainer>
       <QuestionTitle>Question {questionNumber}</QuestionTitle>
-      {isDataLoading ? (
+      {isLoading ? (
         <Loader />
       ) : (
         <QuestionContent>{surveyData[questionNumber]}</QuestionContent>
