@@ -52,7 +52,14 @@ const LoaderWrapper = styled.div`
   justify-content: center;
 `
 
-function formatFetchParams(answers) {
+export function formatJobList(title, listLenght, index) {
+  if (index === listLenght - 1) {
+    return title
+  }
+  return `${title},`
+}
+
+function formatQueryParams(answers) {
   const answerNumbers = Object.keys(answers)
 
   return answerNumbers.reduce((previousParams, answerNumber, index) => {
@@ -65,7 +72,7 @@ function formatFetchParams(answers) {
 function Results() {
   const { theme } = useTheme()
   const { answers } = useContext(SurveyContext)
-  const fetchParams = formatFetchParams(answers)
+  const fetchParams = formatQueryParams(answers)
 
   const { data, isLoading, error } = useFetch(
     `http://localhost:8000/results?${fetchParams}`
@@ -76,8 +83,8 @@ function Results() {
   }
 
   const resultsData = data?.resultsData
-  console.log(data)
-  console.log(resultsData)
+  // console.log(data)
+  // console.log(resultsData)
 
   return isLoading ? (
     <LoaderWrapper>
@@ -93,8 +100,7 @@ function Results() {
               key={`result-title-${index}-${result.title}`}
               theme={theme}
             >
-              {result.title}
-              {index === resultsData.length - 1 ? "" : ","}
+              {formatJobList(result.title, resultsData.length, index)}
             </JobTitle>
           ))}
       </ResultsTitle>
