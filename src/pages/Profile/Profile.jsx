@@ -1,7 +1,11 @@
-import { Component } from 'react'
+// import { Component } from 'react'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
-import { ThemeContext } from '../../utils/context/ContextProvider.jsx'
+import { useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { useTheme } from '../../utils/hooks/hooks'
+import { useEffect } from 'react'
+import { Loader } from '../../utils/style/Atoms.jsx'
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -85,58 +89,73 @@ const Availability = styled.span`
   padding-left: 20px;
   position: relative;
 `
+const LoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`
 
-class Profile extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      profileData: {},
+function Profile() {
+  const { id: queryId } = useParams()
+  const [profileData, setProfileData] = useState({})
+  const { theme } = useTheme()
+  const [isLoading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    async function fetchData() {
+      try {
+        const url = `http://localhost:8000/freelance?id=${queryId}`
+        const response = await fetch(url)
+        const jsonResponse = await response.json()
+        setProfileData(jsonResponse?.freelanceData)
+      } catch (err) {
+        console.log(err)
+        setError(true)
+      } finally {
+        setLoading(false)
+      }
     }
+    fetchData()
+  }, [queryId])
+
+  if (error) {
+    return <pre>{error}</pre>
   }
 
-  componentDidMount() {
-    const { id } = this.props
-
-    fetch(`http://localhost:8000/freelance?id=${id}`)
-      .then((response) => response.json())
-      .then((jsonResponse) => {
-        this.setState({ profileData: jsonResponse?.freelanceData })
-      })
-  }
-
-  render() {
-    const { profileData } = this.state
-    const { picture, name, location, tjm, job, skills, available, id } =
-      profileData
-    return (
-      <ThemeContext.Consumer>
-        {({ theme }) => (
-          <ProfileWrapper theme={theme}>
-            <Picture src={picture} alt={name} height={150} width={150} />
-            <ProfileDetails theme={theme}>
-              <TitleWrapper>
-                <Title>{name}</Title>
-                <Location>{location}</Location>
-              </TitleWrapper>
-              <JobTitle>{job}</JobTitle>
-              <SkillsWrapper>
-                {skills &&
-                  skills.map((skill) => (
-                    <Skill key={`skill-${skill}-${id}`} theme={theme}>
-                      {skill}
-                    </Skill>
-                  ))}
-              </SkillsWrapper>
-              <Availability available={available}>
-                {available ? 'Disponible maintenant' : 'Indisponible'}
-              </Availability>
-              <Price>{tjm} € / jour</Price>
-            </ProfileDetails>
-          </ProfileWrapper>
-        )}
-      </ThemeContext.Consumer>
-    )
-  }
+  const { picture, name, location, tjm, job, skills, available } = profileData
+  console.log(profileData)
+  return (
+    <div>
+      {isLoading ? (
+        <LoaderWrapper>
+          <Loader theme={theme} data-testid="loader" />
+        </LoaderWrapper>
+      ) : (
+        <ProfileWrapper theme={theme}>
+          <Picture src={picture} alt={name} height={150} width={150} />
+          <ProfileDetails theme={theme}>
+            <TitleWrapper>
+              <Title>{name}</Title>
+              <Location>{location}</Location>
+            </TitleWrapper>
+            <JobTitle>{job}</JobTitle>
+            <SkillsWrapper>
+              {skills &&
+                skills.map((skill) => (
+                  <Skill key={`skill-${skill}-${queryId}`} theme={theme}>
+                    {skill}
+                  </Skill>
+                ))}
+            </SkillsWrapper>
+            <Availability available={available}>
+              {available ? 'Disponible maintenant' : 'Indisponible'}
+            </Availability>
+            <Price>{tjm} € / jour</Price>
+          </ProfileDetails>
+        </ProfileWrapper>
+      )}
+    </div>
+  )
 }
-
 export default Profile

@@ -23,35 +23,6 @@ const StyledInput = styled.input`
   margin-top: 5px;
   margin-bottom: 15px;
 `
-
-// class EmailInput extends Component {
-//   // L'autre manière de binder de manière explicite votre fonction au this
-//   // this.updateInputValue =this.updateInputValue.bind(this)
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       inputValue: '',
-//     }
-//   }
-//   updateInputValue = (value) => {
-//     this.setState({ inputValue: value })
-//   }
-//   render() {
-//     // Ici on récupère theme en destructurant this.props
-//     const { theme } = this.props
-//     return (
-//       <InputWrapper theme={theme}>
-//         <StyledLabel theme={theme}>Adresse Email</StyledLabel>
-//         <StyledInput
-//           theme={theme}
-//           onChange={(e) => this.updateInputValue(e.target.value)}
-//         />
-//         {this.state.inputValue}
-//       </InputWrapper>
-//     )
-//   }
-// }
-
 function EmailInput() {
   const { theme } = useTheme()
   const [email, setEmail] = useState('')
@@ -59,7 +30,7 @@ function EmailInput() {
     <InputWrapper theme={theme}>
       <StyledLabel theme={theme}>Adresse Email</StyledLabel>
       <StyledInput theme={theme} onChange={(e) => setEmail(e.target.value)} />
-      {email}
+      {/* {email} */}
     </InputWrapper>
   )
 }
