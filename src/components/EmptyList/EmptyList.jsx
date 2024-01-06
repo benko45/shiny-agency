@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import styled from 'styled-components'
-import colors from '../../utils/style/colors.jsx'
+import colors from '../../utils/style/colors.js'
 import EmptyIllustration from '../../assets/empty.svg'
 
 const Container = styled.div`
