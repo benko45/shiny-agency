@@ -96,8 +96,8 @@ const LoaderWrapper = styled.div`
 
 function Profile() {
   const { id: queryId } = useParams()
-  const [profileData, setProfileData] = useState({})
   const { theme } = useTheme()
+  const [profileData, setProfileData] = useState({})
   const [isLoading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
@@ -124,7 +124,6 @@ function Profile() {
   }
 
   const { picture, name, location, tjm, job, skills, available } = profileData
-  console.log(profileData)
   return (
     <div>
       {isLoading ? (
