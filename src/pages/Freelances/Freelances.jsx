@@ -1,8 +1,8 @@
-import Card from "../../components/Card/Card.jsx"
-import styled from "styled-components"
-import colors from "../../utils/style/colors.js"
-import { Loader } from "../../utils/style/Atoms.jsx"
-import { useFetch, useTheme } from "../../utils/hooks/hooks.jsx"
+import Card from '../../components/Card/Card.jsx'
+import styled from 'styled-components'
+import colors from '../../utils/style/colors.js'
+import { Loader } from '../../utils/style/Atoms.jsx'
+import { useFetch, useTheme } from '../../utils/hooks/hooks.jsx'
 
 const CardsContainer = styled.div`
   display: grid;
@@ -17,7 +17,7 @@ const PageTitle = styled.h1`
   font-size: 30px;
   text-align: center;
   padding-bottom: 30px;
-  color: ${({ theme }) => (theme === "light" ? "#000000" : "#ffffff")};
+  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 `
 
 const PageSubtitle = styled.h2`
@@ -26,7 +26,7 @@ const PageSubtitle = styled.h2`
   font-weight: 300;
   text-align: center;
   padding-bottom: 30px;
-  color: ${({ theme }) => (theme === "light" ? "#000000" : "#ffffff")};
+  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 `
 
 const LoaderWrapper = styled.div`

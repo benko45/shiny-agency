@@ -1,4 +1,4 @@
-import { formatJobList, formatQueryParams } from "./Results.jsx"
+import { formatJobList } from "./Results.jsx"
 
 describe("The getJobTitle function", () => {
   it("should add a comma to a word", () => {
