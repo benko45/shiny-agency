@@ -2,8 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-
-import { ThemeProvider, SurveyProvider} from './utils/context/ContextProvider.jsx'
+import {
+  ThemeProvider,
+  SurveyProvider,
+} from './utils/context/ContextProvider.jsx'
 
 import Home from './pages/Home/Home.jsx'
 import Survey from './pages/Survey/Survey.jsx'
@@ -31,9 +33,9 @@ ReactDOM.render(
             <Route path="*" element={<Error />} />
           </Routes>
           <Footer />
-          </SurveyProvider>
+        </SurveyProvider>
       </ThemeProvider>
     </Router>
   </React.StrictMode>,
-  document.getElementById('root')
-);
+  document.getElementById('root'),
+)
