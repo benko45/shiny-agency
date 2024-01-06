@@ -15,6 +15,7 @@ import Freelances from './pages/Freelances/Freelances.jsx'
 import Header from './components/Header/Header.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import Error from './components/Error/Error.jsx'
+import ProfileContainer from './components/ProfileContainer/ProfileContainer.jsx'
 
 import GlobalStyle from './utils/style/GlobalStyle.jsx'
 
@@ -30,6 +31,7 @@ ReactDOM.render(
             <Route path="/survey/:questionNumber" element={<Survey />} />
             <Route path="/results" element={<Results />} />
             <Route path="/freelances" element={<Freelances />} />
+            <Route path="/profile/:id" element={<ProfileContainer />} />
             <Route path="*" element={<Error />} />
           </Routes>
           <Footer />

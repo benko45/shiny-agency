@@ -25,28 +25,27 @@ class Card extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isFavorite: false,
+      // isFavorite: false,
     }
   }
-  updateIsFavorite = (value) => {
-    this.setState({ isFavorite: value })
-  }
+  // updateIsFavorite = (value) => {
+  //   this.setState({ isFavorite: value })
+  // }
 
   render() {
-    const { theme, label, picture, title } = this.props
-    const star = this.state.isFavorite ? '🌟' : ''
+    const { theme, label, picture } = this.props
+    // const star = this.state.isFavorite ? '🌟' : ''
     return (
       <CardWrapper
         theme={theme}
-        onClick={() => {
-          this.updateIsFavorite(!this.state.isFavorite)
-        }}
+        // onClick={() => {
+        //   this.updateIsFavorite(!this.state.isFavorite)
+        // }
+        // }
       >
         <CardLabel theme={theme}>{label}</CardLabel>
         <CardImage src={picture} alt="freelance" />
-        <CardTitle theme={theme}>
-          {star} {title} {star}
-        </CardTitle>
+        <CardTitle theme={theme}>{/* {star} {title} {star} */}</CardTitle>
       </CardWrapper>
     )
   }
